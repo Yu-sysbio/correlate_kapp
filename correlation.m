@@ -22,7 +22,7 @@ data = kapp;
 [RHO,~] = corr(log10(data),'type','Pearson');
 
 figure();
-h = heatmap(label,label,RHO,'Colormap',clrmap,...
+h = heatmap(label,label,RHO.^2,'Colormap',clrmap,...
     'ColorMethod','count','CellLabelColor','k');
 title(['Correlations between kapps (N = ' num2str(length(rxn)) ') under ' num2str(length(conditions)) ' conditions']);
 set(h,'FontSize',6,'FontName','Helvetica');
@@ -73,7 +73,7 @@ data = kapplist;
 [RHO,~] = corr(log10(data),'type','Pearson');
 
 figure();
-h = heatmap(label,label,RHO,'Colormap',clrmap,...
+h = heatmap(label,label,RHO.^2,'Colormap',clrmap,...
     'ColorMethod','count','CellLabelColor','k');
 title(['Correlations between kapps (N = ' num2str(length(rxnlist)) ') of ' num2str(length(strainlist)) ' strains']);
 set(h,'FontSize',6,'FontName','Helvetica');
@@ -81,25 +81,5 @@ h.FontColor = 'k';
 
 set(gcf,'position',[320 320 220 220]);
 set(gca,'position',[0.15 0.15 0.6 0.6]);
-
-%% Combined dataset
-% rxn_combined = intersect(rxn,rxnlist);
-% [~,m] = ismember(rxn_combined,rxn);
-% [~,n] = ismember(rxn_combined,rxnlist);
-% kapp_combined = [kapp(m,:) kapplist(n,:)];
-% label_combined = [conditions strainlist];
-% 
-% label = num2cell(1:1:length(label_combined));
-% data = kapp_combined;
-% 
-% [RHO,~] = corr(log10(data),'type','Pearson');
-% % [RHO,~] = corr(data,'type','Pearson');
-% 
-% figure();
-% h = heatmap(label,label,RHO,'Colormap',clrmap,...
-%     'ColorMethod','count','CellLabelColor','k');
-% title(['Correlations between kapps (N = ' num2str(length(rxn_combined)) ') of combined datasets']);
-% set(h,'FontSize',6,'FontName','Helvetica');
-% h.FontColor = 'k';
 
 
